@@ -1,12 +1,23 @@
 # this is the "app/robo_advisor.py" file
 
+import requests
+import json
 
 #
 #INFO OUTPUTS
 #
 
+request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
+
+response = requests.get(request_url)
+#print(type(response))   #> <class 'requests.model.Response'>
+#print(response.status_code) #> 200
+#print(response.text)
+
+parsed_response = json.loads(response.text)
 
 
+breakpoint()
 
 #
 #INFO OUTPUTS
