@@ -4,7 +4,10 @@ import csv
 import json
 import os
 
+from dotenv import load_dotenv
 import requests
+
+load_dotenv() #> loads contents of the .env file into the script's environment
 
 #utility function to convert float or integer
 #help from Professor Rossetti screencast
@@ -15,7 +18,10 @@ def to_usd(my_price):
 #INFO OUTPUTS
 #
 
-request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
+api_key = os.environ.get("ALPHAVANTAGE_API_KEY")  #"demo"
+symbol = "MSFT" #TODO: ask user for symbol
+
+request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 
 response = requests.get(request_url)
 
