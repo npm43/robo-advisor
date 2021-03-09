@@ -56,7 +56,7 @@ parsed_response = json.loads(response.text)
 try:
     last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 except:
-    print("Sorry, couldn't find any trading data for that stock symbol")
+    print("Sorry, there is no trading data for that stock symbol.")
     exit()
 
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
