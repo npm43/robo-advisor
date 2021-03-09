@@ -52,6 +52,13 @@ response = requests.get(request_url)
 
 parsed_response = json.loads(response.text)
 
+# help through Anthony Redfern from https://stackoverflow.com/questions/24898797/check-if-key-exists-and-iterate-the-json-array-using-python
+try:
+    last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
+except:
+    print("Sorry, couldn't find any trading data for that stock symbol")
+    exit()
+
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
 
 tsd = parsed_response["Time Series (Daily)"]
