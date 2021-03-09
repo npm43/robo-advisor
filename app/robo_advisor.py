@@ -3,7 +3,7 @@
 import csv
 import json
 import os
-
+from datetime import datetime
 from dotenv import load_dotenv
 import requests
 
@@ -22,6 +22,10 @@ api_key = os.environ.get("ALPHAVANTAGE_API_KEY")  #"demo"
 symbol = "MSFT" #TODO: ask user for symbol
 
 request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
+
+#used modified date code from Shopping Cart Project
+current_time = datetime.now()
+dt_string = current_time.strftime("%m/%d/%Y %H:%M:%S")
 
 response = requests.get(request_url)
 
@@ -83,7 +87,7 @@ print("-------------------------")
 print("SELECTED SYMBOL: XYZ")
 print("-------------------------")
 print("REQUESTING STOCK MARKET DATA...")
-print("REQUEST AT: 2018-02-20 02:00pm")
+print(f"REQUEST AT: {dt_string}")
 print("-------------------------")
 print(f"LATEST DAY: {last_refreshed}")
 print(f"LATEST CLOSE:{to_usd(float(latest_close))}")
